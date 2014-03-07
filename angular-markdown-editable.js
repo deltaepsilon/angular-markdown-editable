@@ -3,6 +3,8 @@
 //
 // Written by John Lindquist (original author). Modified by Jonathan Rowny (ngModel support).
 // Adapted by Christopher S. Case
+// Extended even further by Chris Esplin (@deltaepsilon)
+//
 //
 // Taken from: http://blog.angularjs.org/2012/05/custom-components-part-1.html
 //
@@ -15,8 +17,7 @@ angular.module("angular-markdown-editable", []).directive('markdownEditable', fu
   return {
     restrict: 'A',
     require: '?ngModel',
-    link:  function(scope, element, attrs, model)
-    {
+    link:  function(scope, element, attrs, model) {
       // Check for extensions
       var extAttr = attrs.extensions;
       var callPrettyPrint = false;
@@ -63,6 +64,7 @@ angular.module("angular-markdown-editable", []).directive('markdownEditable', fu
         if(attrs.ngModel) {
           if (model.$modelValue) {
             val = model.$modelValue;
+            console.log('modelValue', val);
           } // end if
         } else {
           val = element.text();
@@ -92,30 +94,39 @@ angular.module("angular-markdown-editable", []).directive('markdownEditable', fu
       //Support for contenteditable
       if(attrs.contenteditable === "true" && attrs.ngModel) {
         var LINEBREAK_REGEX = /\n/g,
-          BR_REGEX = /<br(\/)?>/g,
-          DIV_REGEX = /<div>/g,
+          BR_REGEX = /<(br|p|div)(\/)?>/g,
           TAG_REGEX = /<.+?>/g,
+          NBSP_REGEX = /&nbsp;/g,
+          BLOCKQUOTE_REGEX = /&gt;/g,
           TRIPLE_LINEBREAK_REGEX = /\n\n\n/g; // Make sure to scrub triple line breaks... they don't make much sense in MD.
 
         element.on('focus', function () {
-          var text = scope[attrs.ngModel];
-          text = text.replace(LINEBREAK_REGEX, "<br/>");
-          element.html(text);
+          var text = model.$viewValue;
+
+          if (text) {
+            text = text.replace(LINEBREAK_REGEX, "<br/>");
+            element.html(text);
+          }
+
         });
 
         element.on('blur', function () {
           var html = element.html();
 
           html = html.replace(BR_REGEX, "\n");
-          html = html.replace(DIV_REGEX, "\n");
           html = html.replace(TAG_REGEX, "");
+          html = html.replace(NBSP_REGEX, "");
+          html = html.replace(BLOCKQUOTE_REGEX, ">");
           html = html.replace(TRIPLE_LINEBREAK_REGEX, "\n\n");
 
-          scope[attrs.ngModel] = html;
           model.$modelValue = html;
           model.$viewValue = html;
+          element.attr('value', html);
+
+          eval("scope." + attrs.ngModel + "=html;");
 
           $timeout(render);
+
         });
       }
 
