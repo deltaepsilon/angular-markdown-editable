@@ -11,6 +11,31 @@
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+    <script src="https://raw.github.com/deltaepsilon/angular-markdown-editable/master/angular-markdown-editable.js"></script>
+    <script src="../lib/showdown/src/showdown.js"></script>
+
+    <script type="text/javascript">
+        angular.module('angularMarkdownEditableApp', ['angular-markdown-editable']);
+
+        angular.module('angularMarkdownEditableApp').controller('MarkdownCtrl', function ($scope) {
+          $scope.markdownText = "### This is an h3\nAnd this is a paragraph followed by a poorly formed list item. Add double line breaks to repair it.\n- List Item 1\n- List Item 2\n# This is an h1";
+        });
+    </script>
+
+    <style type="text/css">
+        #markdown-area {
+            min-height: 100px;
+            width: 100%;
+        }
+
+        #text-area {
+            min-height: 200px;
+            width: 100%;
+        }
+    </style>
+
   </head>
   <body>
     <div class="wrapper">
@@ -41,6 +66,24 @@
 <p>Textarea and Input elements are pain in the neck. They take up valuable screen real estate, and they're extra work to format. Editing content in place with <code>contenteditable=true</code> is a much nicer way to accept user input. </p>
 
 <p>Contenteditable is <a href="https://www.youtube.com/watch?v=1UxHZA4EHC8">clean &amp; easy</a>.</p>
+
+<h3>
+  <a name="would-you-like-an-example" class="anchor" href="#would-you-like-an-example"><span class="octicon octicon-link"></span></a>Would You Like An Example?</h3>
+
+<p>So check out the text block below. It's markdown being served up via angular-markdown-editable. Edit it and watch the text area values change. Then edit the textarea to watch the contenteditable element change as well. Nifty!</p>
+
+<hr>
+
+<div id="markdown-app" ng-app="angularMarkdownEditableApp">
+    <div id="markdown-area" markdown-editable ng-model="markdownText" contenteditable="true"></div>
+
+    <hr>
+
+    <textarea name="text-area" id="text-area" ng-model="markdownText"></textarea>
+</div>
+
+<hr>
+
 
 <h3>
 <a name="put-em-all-together" class="anchor" href="#put-em-all-together"><span class="octicon octicon-link"></span></a>Put 'Em All Together...</h3>
