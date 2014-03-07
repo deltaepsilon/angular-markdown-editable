@@ -1,0 +1,39 @@
+{
+  "name": "angular-markdown-editable",
+  "version": "0.0.2",
+  "homepage": "https://github.com/deltaepsilon/angular-markdown-editable",
+  "authors": [
+    "Chris Esplin <chris@quiver.is>"
+  ],
+  "description": "ContentEditable + Markdown mashup",
+  "main": "angular-markdown-editable.js",
+  "keywords": [
+    "angular",
+    "markdown",
+    "contenteditable",
+    "quiver"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "lib",
+    "test",
+    "tests",
+    "example"
+  ],
+  "dependencies": {
+    "showdown": "~0.3.1"
+  },
+  "_release": "0.0.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.2",
+    "commit": "056ef7cdbd62fae0d3816a108290c2d3a425a56a"
+  },
+  "_source": "git://github.com/deltaepsilon/angular-markdown-editable.git",
+  "_target": "~0.0.2",
+  "_originalSource": "angular-markdown-editable",
+  "_direct": true
+}

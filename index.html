@@ -13,8 +13,8 @@
     <![endif]-->
 
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
-    <script src="https://raw.github.com/deltaepsilon/angular-markdown-editable/master/angular-markdown-editable.js"></script>
-    <script src="../lib/showdown/src/showdown.js"></script>
+    <script src="lib/angular-markdown-editable/angular-markdown-editable.js"></script>
+    <script src="lib/showdown/src/showdown.js"></script>
 
     <script type="text/javascript">
         angular.module('angularMarkdownEditableApp', ['angular-markdown-editable']);
@@ -75,11 +75,13 @@
 <hr>
 
 <div id="markdown-app" ng-app="angularMarkdownEditableApp">
-    <div id="markdown-area" markdown-editable ng-model="markdownText" contenteditable="true"></div>
+    <section ng-controller="MarkdownCtrl">
+        <div id="markdown-area" markdown-editable ng-model="markdownText" contenteditable="true">{{ markdownText }}</div>
 
-    <hr>
+        <hr>
 
-    <textarea name="text-area" id="text-area" ng-model="markdownText"></textarea>
+        <textarea name="text-area" id="text-area" ng-model="markdownText"></textarea>
+    </section>
 </div>
 
 <hr>
