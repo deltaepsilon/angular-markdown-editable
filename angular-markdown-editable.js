@@ -64,7 +64,6 @@ angular.module("angular-markdown-editable", []).directive('markdownEditable', fu
         if(attrs.ngModel) {
           if (model.$modelValue) {
             val = model.$modelValue;
-            console.log('modelValue', val);
           } // end if
         } else {
           val = element.text();
