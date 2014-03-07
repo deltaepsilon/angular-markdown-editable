@@ -8,7 +8,7 @@
             angular.module('exampleApp', ['angular-markdown-editable']);
 
             angular.module('exampleApp').controller('ExampleCtrl', function ($scope) {
-              $scope.markdownText = "### This is an h3\nAnd this is a paragraph.\n- List Item 1\n- List Item 2\n# This is an h1";
+              $scope.markdownText = "### This is an h3\nAnd this is a paragraph followed by a poorly formed list item. Add double line breaks to repair it.\n- List Item 1\n- List Item 2\n# This is an h1";
             });
         </script>
         <style type="text/css">

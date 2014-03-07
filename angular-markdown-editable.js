@@ -111,6 +111,7 @@ angular.module("angular-markdown-editable", []).directive('markdownEditable', fu
           html = html.replace(TAG_REGEX, "");
           html = html.replace(TRIPLE_LINEBREAK_REGEX, "\n\n");
 
+          scope[attrs.ngModel] = html;
           model.$modelValue = html;
           model.$viewValue = html;
 
