@@ -9,22 +9,18 @@
 // @module angular.markdown.js
 //----------------------------------------------------------------------------------------------------------------------
 
-var MarkdownModule = angular.module("angular.markdown-editable", []);
-
-MarkdownModule.directive('markdown', function()
-{
+angular.module("angular-markdown-editable", []).directive('markdownEditable', function($timeout) {
   var converter = new Showdown.converter();
 
   return {
-    restrict: 'AE',
+    restrict: 'A',
     require: '?ngModel',
     link:  function(scope, element, attrs, model)
     {
       // Check for extensions
-      var extAttr = attrs['extensions'];
+      var extAttr = attrs.extensions;
       var callPrettyPrint = false;
-      if(extAttr)
-      {
+      if(extAttr) {
         var extensions = [];
 
         // Convert the comma separated string into a list.
@@ -44,44 +40,35 @@ MarkdownModule.directive('markdown', function()
       } // end if
 
       // Check for option to strip whitespace
-      var stripWS = attrs['strip'];
-      if(String(stripWS).toLowerCase() == 'true')
-      {
+      var stripWS = attrs.strip;
+      if(String(stripWS).toLowerCase() == 'true') {
         stripWS = true;
-      }
-      else
-      {
+      } else {
         stripWS = false;
       } // end if
 
       // Check for option to translate line breaks
-      var lineBreaks = attrs['lineBreaks'];
+      var lineBreaks = attrs.lineBreaks;
       if (String(lineBreaks).toLowerCase() == 'true') {
         lineBreaks = true;
       } else {
         lineBreaks = false;
       } // end if
 
-      var render = function()
-      {
+      var render = function() {
         var htmlText = "";
         var val = "";
 
         // Check to see if we're using a model.
-        if(attrs['ngModel'])
-        {
-          if (model.$modelValue)
-          {
+        if(attrs.ngModel) {
+          if (model.$modelValue) {
             val = model.$modelValue;
           } // end if
-        }
-        else
-        {
+        } else {
           val = element.text();
         } // end if
 
-        if(stripWS)
-        {
+        if(stripWS) {
           val = val.replace(/^[ /t]+/g, '').replace(/\n[ /t]+/g, '\n');
         } // end stripWS
 
@@ -93,16 +80,43 @@ MarkdownModule.directive('markdown', function()
         htmlText = converter.makeHtml(val);
         element.html(htmlText);
 
-        if(callPrettyPrint)
-        {
+        if(callPrettyPrint) {
           prettyPrint();
         } // end if
       };
 
-      if(attrs['ngModel'])
-      {
-        scope.$watch(attrs['ngModel'], render);
+      if(attrs.ngModel) {
+        scope.$watch(attrs.ngModel, render);
       } // end if
+
+      //Support for contenteditable
+      if(attrs.contenteditable === "true" && attrs.ngModel) {
+        var LINEBREAK_REGEX = /\n/g,
+          BR_REGEX = /<br(\/)?>/g,
+          DIV_REGEX = /<div>/g,
+          TAG_REGEX = /<.+?>/g,
+          TRIPLE_LINEBREAK_REGEX = /\n\n\n/g; // Make sure to scrub triple line breaks... they don't make much sense in MD.
+
+        element.on('focus', function () {
+          var text = scope[attrs.ngModel];
+          text = text.replace(LINEBREAK_REGEX, "<br/>");
+          element.html(text);
+        });
+
+        element.on('blur', function () {
+          var html = element.html();
+
+          html = html.replace(BR_REGEX, "\n");
+          html = html.replace(DIV_REGEX, "\n");
+          html = html.replace(TAG_REGEX, "");
+          html = html.replace(TRIPLE_LINEBREAK_REGEX, "\n\n");
+
+          model.$modelValue = html;
+          model.$viewValue = html;
+
+          $timeout(render);
+        });
+      }
 
       render();
     } // end link

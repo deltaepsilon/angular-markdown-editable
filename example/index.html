@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head xmlns="http://www.w3.org/1999/html">
+        <title>Angular Markdown Editable Example</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+        <script src="../lib/showdown/src/showdown.js"></script>
+        <script src="../angular-markdown-editable.js"></script>
+        <script type="text/javascript">
+            angular.module('exampleApp', ['angular-markdown-editable']);
+
+            angular.module('exampleApp').controller('ExampleCtrl', function ($scope) {
+              $scope.markdownText = "### This is an h3\nAnd this is a paragraph.\n- List Item 1\n- List Item 2\n# This is an h1";
+            });
+        </script>
+        <style type="text/css">
+
+            #markdown-area {
+                min-height: 100px;
+                width: 100%;
+            }
+
+            #text-area {
+                min-height: 200px;
+                width: 100%;
+            }
+
+        </style>
+    </head>
+
+    <body ng-app="exampleApp">
+        <h1>Angular-Markdown-Editable</h1>
+        <p>
+            Use markdown and contenteditable at the same time... seamlessly???
+        </p>
+
+        <hr>
+
+        <section ng-controller="ExampleCtrl">
+            <div id="markdown-area" markdown-editable ng-model="markdownText" contenteditable="true">{{ markdownText }}</div>
+            <textarea id="text-area" ng-model="markdownText"></textarea>
+        </section>
+
+
+    </body>
+
+</html>
