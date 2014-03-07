@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Angular-Markdown-Editable by deltaepsilon</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Angular-Markdown-Editable</h1>
+        <p>Markdown is awesome. ContentEditable is awesome. How about we display the parsed markdown... and let users edit the markdown text on focus?</p>
+
+        <p class="view"><a href="https://github.com/deltaepsilon/angular-markdown-editable">View the Project on GitHub <small>deltaepsilon/angular-markdown-editable</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/deltaepsilon/angular-markdown-editable/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/deltaepsilon/angular-markdown-editable/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/deltaepsilon/angular-markdown-editable">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h3>
+<a name="markdown-is-the-way-of-the-future" class="anchor" href="#markdown-is-the-way-of-the-future"><span class="octicon octicon-link"></span></a>Markdown Is The Way of the Future</h3>
+
+<p>Markdown is the easiest way to accept user-generated formatting. You don't want your users inputting html do you? Of course not. That's a pain to sanitize, and folks hate writing it. </p>
+
+<p>Markdown is the way of the future... the way of the future... <a href="http://youtu.be/4_Pbx9mvWPY">the way of the future</a>...</p>
+
+<h3>
+<a name="contenteditable-is-clean--easy" class="anchor" href="#contenteditable-is-clean--easy"><span class="octicon octicon-link"></span></a>ContentEditable Is Clean &amp; Easy</h3>
+
+<p>Textarea and Input elements are pain in the neck. They take up valuable screen real estate, and they're extra work to format. Editing content in place with <code>contenteditable=true</code> is a much nicer way to accept user input. </p>
+
+<p>Contenteditable is <a href="https://www.youtube.com/watch?v=1UxHZA4EHC8">clean &amp; easy</a>.</p>
+
+<h3>
+<a name="put-em-all-together" class="anchor" href="#put-em-all-together"><span class="octicon octicon-link"></span></a>Put 'Em All Together...</h3>
+
+<p>... and you get contenteditable elements that display plaintext when editing, but are parsed as markdown as soon as the user blurs away from the element.</p>
+
+<h3>
+<a name="at-least-in-theory" class="anchor" href="#at-least-in-theory"><span class="octicon octicon-link"></span></a>At Least In Theory</h3>
+
+<p>This handy trick is a pain to implement, because the Angular directive that makes it possible does not have clean access to the element's scope. This leads to a bit of hackery to end-run the issue. It takes a few tries to set the correct scope values using the link functions <code>model</code> input. And there's a dirty little <code>eval()</code> statement in there somewhere. </p>
+
+<p>There's also a reliance on a the <code>value</code> attribute as a method of stashing the unparsed markdown text for other directives to access before the scope changes are fully propagated. There are timing issues with multiple directives on a single element... all trying to read and write to scope at the same time. One can only use <code>$timeout</code> and <code>scope.$apply</code> so many times before things get ridiculous.</p>
+
+<h3>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h3>
+
+<p>This part is easy. Run <code>bower install --save angular-markdown-editable</code>, and make sure that you're referencing both <code>bower_components/showdown/src/showdown.js</code> and <code>bower_components/angular-markdown-editable/angular-markdown-editable.js</code> in your <code>index.html</code> file.</p>
+
+<p>Next, require <code>angular-markdown-editable</code> in your application module definition.</p>
+
+<pre><code>angular.module('exampleApp', ['angular-markdown-editable']);
+</code></pre>
+
+<p>Finally, use the directive like this...</p>
+
+<pre><code>&lt;div id="markdown-area" markdown-editable ng-model="markdownText" contenteditable="true"&gt;{{ markdownText }}&lt;/div&gt;
+</code></pre>
+
+<h3>
+<a name="extra-features" class="anchor" href="#extra-features"><span class="octicon octicon-link"></span></a>Extra features</h3>
+
+<p>I ripped most of this off from <a href="https://github.com/Morgul" class="user-mention">@Morgul</a>, so check out his <a href="https://bitbucket.org/morgul/angular-markdown/src/2f561047f55d?at=default">angular-markdown</a> BitBucket repo for goodies on how to use extensions and how to strip leading white space.</p>
+
+<p><strong><em>Hint hint:</em></strong> It looks like this:</p>
+
+<pre><code>&lt;div id="markdown-area" markdown-editable ng-model="markdownText" contenteditable="true" strip="true" extensions="github"&gt;{{ markdownText }}&lt;/div&gt;
+</code></pre>
+
+<h3>
+<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+
+<p>This has been developed by Chris Esplin (<a href="https://github.com/deltaepsilon" class="user-mention">@deltaepsilon</a>), leveraging the work of John Lindquist (<a href="https://github.com/johnlindquist" class="user-mention">@johnlindquist</a>), Jonathan Rowny (<a href="https://github.com/jrowny" class="user-mention">@jrowny</a>) and Christopher S. Case (<a href="https://github.com/Morgul" class="user-mention">@Morgul</a>).</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/deltaepsilon">deltaepsilon</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
