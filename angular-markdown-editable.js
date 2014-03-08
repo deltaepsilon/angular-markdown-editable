@@ -118,11 +118,8 @@ angular.module("angular-markdown-editable", []).directive('markdownEditable', fu
           html = html.replace(BLOCKQUOTE_REGEX, ">");
           html = html.replace(TRIPLE_LINEBREAK_REGEX, "\n\n");
 
-          model.$modelValue = html;
-          model.$viewValue = html;
+          model.$setViewValue(html);
           element.attr('value', html);
-
-          eval("scope." + attrs.ngModel + "=html;");
 
           $timeout(render);
 
