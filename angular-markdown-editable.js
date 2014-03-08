@@ -87,7 +87,8 @@ angular.module("angular-markdown-editable", []).directive('markdownEditable', fu
       };
 
       if(attrs.ngModel) {
-        scope.$watch(attrs.ngModel, render);
+        model.$render = render;
+        $timeout(render);
       } // end if
 
       //Support for contenteditable
