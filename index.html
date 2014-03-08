@@ -94,13 +94,6 @@
 <p>... and you get contenteditable elements that display plaintext when editing, but are parsed as markdown as soon as the user blurs away from the element.</p>
 
 <h3>
-<a name="at-least-in-theory" class="anchor" href="#at-least-in-theory"><span class="octicon octicon-link"></span></a>At Least In Theory</h3>
-
-<p>This handy trick is a pain to implement, because the Angular directive that makes it possible does not have clean access to the element's scope. This leads to a bit of hackery to end-run the issue. It takes a few tries to set the correct scope values using the link functions <code>model</code> input. And there's a dirty little <code>eval()</code> statement in there somewhere. </p>
-
-<p>There's also a reliance on a the <code>value</code> attribute as a method of stashing the unparsed markdown text for other directives to access before the scope changes are fully propagated. There are timing issues with multiple directives on a single element... all trying to read and write to scope at the same time. One can only use <code>$timeout</code> and <code>scope.$apply</code> so many times before things get ridiculous.</p>
-
-<h3>
 <a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h3>
 
 <p>This part is easy. Run <code>bower install --save angular-markdown-editable</code>, and make sure that you're referencing both <code>bower_components/showdown/src/showdown.js</code> and <code>bower_components/angular-markdown-editable/angular-markdown-editable.js</code> in your <code>index.html</code> file.</p>
