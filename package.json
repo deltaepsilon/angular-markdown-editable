@@ -21,5 +21,14 @@
   "bugs": {
     "url": "https://github.com/deltaepsilon/angular-markdown-editable/issues"
   },
-  "homepage": "https://github.com/deltaepsilon/angular-markdown-editable"
+  "homepage": "https://github.com/deltaepsilon/angular-markdown-editable",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "karma": "~0.12.0",
+    "grunt-karma": "~0.8.0",
+    "load-grunt-tasks": "~0.4.0",
+    "karma-jasmine": "~0.2.2",
+    "karma-chrome-launcher": "~0.1.2"
+  }
 }

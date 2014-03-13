@@ -24,6 +24,8 @@
     "example"
   ],
   "dependencies": {
-    "showdown": "~0.3.1"
+    "showdown": "~0.3.1",
+    "angular": "~1.2.14",
+    "angular-mocks": "~1.2.14"
   }
 }
