@@ -7,7 +7,7 @@ Markdown is awesome. ContentEditable is awesome. How about we display the parsed
 
 You'll need to use three directives to make full use of this module.
 
-```ng-model``` is required, and ```contenteditable="true"``` should be there to activate both native contentEditable functionality as well as the additional ```contenteditable``` directive included in this module, which wires up ```ngModel``` to ```contenteditable changes.
+```ng-model``` is required, and ```contenteditable="true"``` should be there to activate both native contentEditable functionality as well as the additional ```contenteditable``` directive included in this module, which wires up ```ngModel``` to ```contenteditable``` changes.
 
 Finally, add ```markdown-editable``` to have markdown parsed as html in non-focused states and parsed as text in focused states. A typical implementation looks like this:
 
