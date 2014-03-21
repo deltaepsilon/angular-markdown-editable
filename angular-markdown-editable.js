@@ -17,7 +17,8 @@ angular.module("angular-markdown-editable", []).directive('markdownEditable', fu
   return {
     restrict: 'A',
     require: '?ngModel',
-    link:  function(scope, element, attrs, model) {
+    priority: 1,
+    link:  function postLink(scope, element, attrs, model) {
       // Check for extensions
       var extAttr = attrs.extensions;
       var callPrettyPrint = false;
