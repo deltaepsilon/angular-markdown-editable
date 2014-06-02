@@ -1,2 +1,5 @@
 .DS_Store
 .idea
+lib/angular
+lib/angular-mocks
+node_modules
