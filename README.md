@@ -17,12 +17,6 @@ Finally, add ```markdown-editable``` to have markdown parsed as html in non-focu
 
 where ```$scope.markdownText = "# This is an h1. \n## This is an h2. \n- This is a line item\n- This is a second line item\n\nThis is a new paragraph\n\n# Another h1";```... or any valid markdown text that you like.
 
-### Whitespace
-
-There is an issue with whitespace at the beginning of a textarea input that uses ngModel. ngModel strips whitespace at the beginning of the textarea, so indented code blocks are not supported at the top of a textarea. Use the ``` style code blocks instead.
-
-Indented code block are supported within contenteditable elements, because those values are pulled directly from the DOM.
-
 ### Testing
 
 1. Install dependencies with ```bower install``` and ```npm install```.
