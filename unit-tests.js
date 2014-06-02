@@ -63,4 +63,23 @@ describe('Directive: markdownEditable', function () {
     expect(scope.markdownText).toBe('# a lot simpler');
   });
 
+  it('should respect crazy whitespace', function () {
+    scope.markdownText = "&nbsp; &nbsp; This is a code block \n&nbsp; &nbsp; And so is this \n\nBut this is not a code block.";
+    scope.$digest();
+
+//    alert(element.html());
+    expect(element.html().match('<p>&nbsp; &nbsp; This is a code block').length).toBe(1);
+
+    element.triggerHandler('focus');
+    timeout.flush();
+
+    expect(element.html().match('<p>&nbsp; &nbsp; This is a code block').length).toBe(1);
+
+    element.triggerHandler('blur');
+    timeout.flush();
+
+    expect(element.html().match('<pre><code>This is a code block').length).toBe(1);
+
+  });
+
 });

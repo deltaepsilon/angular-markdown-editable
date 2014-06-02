@@ -99,13 +99,15 @@ angular.module("angular-markdown-editable", []).directive('markdownEditable', fu
           TAG_REGEX = /<.+?>/g,
           NBSP_REGEX = /&nbsp;/g,
           BLOCKQUOTE_REGEX = /&gt;/g,
-          TRIPLE_LINEBREAK_REGEX = /\n\n\n/g; // Make sure to scrub triple line breaks... they don't make much sense in MD.
+          TRIPLE_LINEBREAK_REGEX = /\n\n\n/g, // Make sure to scrub triple line breaks... they don't make much sense in MD.
+          DOUBLE_SPACE_REGEX = /\s\s/g;
 
         element.on('focus', function () {
           var text = model.$viewValue;
 
           if (text) {
             text = text.replace(LINEBREAK_REGEX, "<br/>");
+            text = text.replace(DOUBLE_SPACE_REGEX, "&nbsp; ");
             element.html(text);
           }
 
@@ -116,7 +118,7 @@ angular.module("angular-markdown-editable", []).directive('markdownEditable', fu
 
           html = html.replace(BR_REGEX, "\n");
           html = html.replace(TAG_REGEX, "");
-          html = html.replace(NBSP_REGEX, "");
+          html = html.replace(NBSP_REGEX, " ");
           html = html.replace(BLOCKQUOTE_REGEX, ">");
           html = html.replace(TRIPLE_LINEBREAK_REGEX, "\n\n");
 
