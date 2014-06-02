@@ -1,6 +1,6 @@
 {
   "name": "angular-markdown-editable",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "homepage": "https://github.com/deltaepsilon/angular-markdown-editable",
   "authors": [
     "Chris Esplin <chris@quiver.is>"
@@ -24,16 +24,17 @@
     "example"
   ],
   "dependencies": {
-    "showdown": "~0.3.1"
+    "showdown": "~0.3.1",
+    "angular": "~1.2.14",
+    "angular-mocks": "~1.2.14"
   },
-  "_release": "0.0.2",
+  "_release": "0.0.4",
   "_resolution": {
     "type": "version",
-    "tag": "v0.0.2",
-    "commit": "056ef7cdbd62fae0d3816a108290c2d3a425a56a"
+    "tag": "v0.0.4",
+    "commit": "49358f29c263c0b08b36caf26ed454332e32590a"
   },
   "_source": "git://github.com/deltaepsilon/angular-markdown-editable.git",
   "_target": "~0.0.2",
-  "_originalSource": "angular-markdown-editable",
-  "_direct": true
+  "_originalSource": "angular-markdown-editable"
 }
