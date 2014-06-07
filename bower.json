@@ -25,6 +25,6 @@
     "tests"
   ],
   "dependencies": {
-    "angular-markdown-editable": "~0.0.2"
+    "angular-markdown-editable": "~0.0.4"
   }
 }
