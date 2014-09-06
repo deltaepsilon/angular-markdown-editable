@@ -149,10 +149,14 @@ angular.module("angular-markdown-editable").directive('contenteditable', functio
             selection = window.getSelection();
             range = document.createRange();
             el = element[0];
-            range.setStart(el.firstChild, 0);
-            range.setEnd(el.lastChild, el.lastChild.length);
-            selection.removeAllRanges();
-            return selection.addRange(range);
+
+            if (el.firstChild) { // Empty elements will throw errors
+              range.setStart(el.firstChild, 0);
+              range.setEnd(el.lastChild, el.lastChild.length);
+              selection.removeAllRanges();
+              return selection.addRange(range);
+            }
+
           });
         });
       }
