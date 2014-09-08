@@ -79,12 +79,15 @@ angular.module("angular-markdown-editable", []).directive('markdownEditable', fu
         } // end lineBreaks
 
         // Compile the markdown, and set it.
-        htmlText = converter.makeHtml(val);
-        element.html(htmlText);
+        if (val) {
+          htmlText = converter.makeHtml(val);
+          element.html(htmlText);
 
-        if(callPrettyPrint) {
-          prettyPrint();
-        } // end if
+          if(callPrettyPrint) {
+            prettyPrint();
+          } // end if
+        }
+
       };
 
       if(attrs.ngModel) {
