@@ -1,6 +1,6 @@
 {
   "name": "angular-markdown-editable",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "ContentEditable + Markdown mashup",
   "main": "angular-markdown-editable.js",
   "scripts": {
