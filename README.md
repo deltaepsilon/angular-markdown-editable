@@ -17,6 +17,15 @@ Finally, add ```markdown-editable``` to have markdown parsed as html in non-focu
 
 where ```$scope.markdownText = "# This is an h1. \n## This is an h2. \n- This is a line item\n- This is a second line item\n\nThis is a new paragraph\n\n# Another h1";```... or any valid markdown text that you like.
 
+### Target
+If you'd like to change the target attribute for links in your markdown, try something like the following:
+
+```
+<div markdown-editable target="_blank" class="markdown" ng-model="post.markdown"></div>
+```
+
+Setting the ```target``` attribute on the markdown-editable directive will copy that attribute to all anchor tags.
+
 ### Testing
 
 1. Install dependencies with ```bower install``` and ```npm install```.

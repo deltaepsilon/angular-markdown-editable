@@ -88,6 +88,18 @@ angular.module("angular-markdown-editable", []).directive('markdownEditable', fu
           } // end if
         }
 
+        if (attrs.target) {
+          $timeout(function () {
+            if (element && element[0]) {
+              var aTags = element[0].querySelectorAll('a');
+              var i = aTags.length;
+
+              while (i--) {
+                aTags[i].setAttribute('target', attrs.target);
+              }
+            }
+          });
+        }
       };
 
       if(attrs.ngModel) {
